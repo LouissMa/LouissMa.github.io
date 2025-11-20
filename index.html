@@ -1,43 +1,41 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Merry Christmas 2025 🎄</title>
   <style>
-    body, html { margin:0; padding:0; height:100%; overflow:hidden; background:#000; }
-    canvas { display:block; width:100%; height:100%; }
-    .overlay {
+    body, html { margin:0; padding:0; height:100%; background:#000; overflow:hidden; }
+    canvas { display:block; }
+    #overlay {
       position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-      text-align:center; color:#fff; z-index:10; pointer-events:none;
-      font-family:Arial,sans-serif;
+      text-align:center; color:white; z-index:10; pointer-events:none; font-family:Arial,Helvetica,sans-serif;
     }
-    h1 { 
-      font-size:4.5rem; margin-bottom:1rem;
-      background:linear-gradient(90deg,#ff1744,#ff9800,#ffd700,#a0ff00);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-      text-shadow:0 0 40px rgba(255,215,0,0.8);
-      animation:glow 3s ease-in-out infinite;
-    }
-    p { font-size:1.8rem; margin:0.8rem 0; text-shadow:0 0 20px #000; }
-    a { color:#ffd700; font-weight:bold; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    @keyframes glow { 0%,100% { opacity:0.9; } 50% { opacity:1; } }
-    @media (max-width:768px) { h1{font-size:3rem} p{font-size:1.4rem} }
+    h1 { font-size:4.5rem; background:linear-gradient(90deg,#ff1744,#ff9800,#ffd700,#a0ff00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    p { font-size:1.8rem; text-shadow:0 0 20px #000; }
+    a { color:#ffd700; font-weight:bold; }
+    @media (max-width:768px){ h1{font-size:3rem;} p{font-size:1.4rem;} }
   </style>
 </head>
 <body>
-  <!-- 加载你的3D动画核心文件 -->
-  <script type="module" src="./index-BZRdRA-q.js"></script>
+  <!-- 强制加载你的3D动画js -->
+  <script type="module">
+    import init from './index-BZRdRA-q.js';
+    // 有些单文件打包需要手动指定canvas
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    init({ canvas }).catch(e => {
+      document.body.innerHTML += '<div style="color:red;position:absolute;top:10px;left:10px;z-index:100;">加载失败，刷新试试~</div>';
+      console.error(e);
+    });
+  </script>
 
-  <!-- 圣诞文字浮层 -->
-  <div class="overlay">
+  <div id="overlay">
     <h1>Merry Christmas 2025 🎄</h1>
     <p>Hi，我是 @mabingnan</p>
-    <p>
-      <a href="https://github.com/mabingnan" target="_blank">GitHub</a> • 
-      <a href="https://twitter.com/mabingnan_V" target="_blank">X / Twitter</a>
-    </p>
+    <p><a href="https://github.com/mabingnan">GitHub</a> • <a href="https://twitter.com/mabingnan_V">X</a></p>
     <p>Wish you a warm & snowy Christmas ❄️✨</p>
   </div>
 </body>
